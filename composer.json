@@ -62,5 +62,6 @@
                 "DonationalertsAuth": "Pepperfm\\DonationalertsAuth\\Facades\\DonationalertsAuth"
             }
         }
-    }
+    },
+    "minimum-stability": "stable"
 }

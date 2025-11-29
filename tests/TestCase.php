@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Pepperfm\DonationalertsAuth\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
-use Pepperfm\DonationalertsAuth\Provider;
+use Pepperfm\DonationalertsAuth\Providers\DonationalertsAuthServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -23,7 +23,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            Provider::class,
+            DonationalertsAuthServiceProvider::class,
         ];
     }
 }

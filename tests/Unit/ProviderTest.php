@@ -40,6 +40,7 @@ beforeEach(function () {
 
 test('builds authorization url with expected query parameters', function () {
     $method = (new ReflectionClass($this->provider))->getMethod('getAuthUrl');
+    $method->setAccessible(true);
 
     $url = $method->invoke($this->provider, 'state-123');
     $parsed = parse_url($url);
@@ -60,6 +61,7 @@ test('builds authorization url with expected query parameters', function () {
 
 test('returns the token url', function () {
     $method = (new ReflectionClass($this->provider))->getMethod('getTokenUrl');
+    $method->setAccessible(true);
 
     expect($method->invoke($this->provider))
         ->toBe('https://www.donationalerts.com/oauth/token');
@@ -77,6 +79,7 @@ test('requests user info with a bearer token and returns the decoded payload', f
     $this->provider->setHttpClient($client);
 
     $method = (new ReflectionClass($this->provider))->getMethod('getUserByToken');
+    $method->setAccessible(true);
 
     $payload = $method->invoke($this->provider, 'test-token');
 
@@ -91,6 +94,7 @@ test('requests user info with a bearer token and returns the decoded payload', f
 
 test('maps the user array to a socialite user object', function () {
     $method = (new ReflectionClass($this->provider))->getMethod('mapUserToObject');
+    $method->setAccessible(true);
 
     $user = $method->invoke($this->provider, [
         'data' => [
@@ -118,7 +122,7 @@ test('maps the user array to a socialite user object', function () {
 });
 
 test('returns a token object when refreshing without scopes in the response', function () {
-    $provider = new ProviderTest(
+    $provider = new TestableProvider(
         new Request(),
         'client-id',
         'client-secret',

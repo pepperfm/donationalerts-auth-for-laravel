@@ -56,7 +56,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Pepperfm\\DonationalertsAuth\\Providers\\DonationalertsAuthProvider"
+                "Pepperfm\\DonationalertsAuth\\Providers\\DonationalertsAuthServiceProvider"
             ],
             "aliases": {
                 "DonationalertsAuth": "Pepperfm\\DonationalertsAuth\\Facades\\DonationalertsAuthFacade"

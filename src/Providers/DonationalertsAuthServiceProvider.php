@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Pepperfm\DonationalertsAuth\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Pepperfm\DonationalertsAuth\Provider;
+use Pepperfm\DonationalertsAuth\DonationalertsAuth;
 
 class DonationalertsAuthServiceProvider extends ServiceProvider
 {
@@ -52,7 +52,7 @@ class DonationalertsAuthServiceProvider extends ServiceProvider
         // Register the main class to use with the facade
         $this->app->bind(
             \Pepperfm\DonationalertsAuth\Contracts\DonationalertsAuthContract::class,
-            static fn() => new Provider()
+            static fn() => new DonationalertsAuth()
         );
     }
 }

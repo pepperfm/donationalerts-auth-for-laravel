@@ -1,0 +1,67 @@
+{
+    "name": "pepperfm/donationalerts-auth-for-laravel",
+    "description": "Donation Alerts OAuth2 Provider for Laravel Socialite",
+    "keywords": [
+        "pepperfm",
+        "laravel",
+        "api",
+        "auth",
+        "oauth",
+        "donation",
+        "alerts",
+        "donation alerts",
+        "donationalerts-auth-for-laravel"
+    ],
+    "homepage": "https://github.com/pepperfm/donationalerts-auth-for-laravel",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Dmitry Gaponenko",
+            "email": "Damon3453@yandex.ru",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "socialiteproviders/manager": "^4.8"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-laravel": "4.0",
+        "spatie/laravel-ray": "^1.37"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pepperfm\\DonationalertsAuth\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pepperfm\\DonationalertsAuth\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Pepperfm\\DonationalertsAuth\\Providers\\DonationalertsAuth"
+            ],
+            "aliases": {
+                "DonationalertsAuth": "Pepperfm\\DonationalertsAuth\\Facades\\DonationalertsAuth"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}

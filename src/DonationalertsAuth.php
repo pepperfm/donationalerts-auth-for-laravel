@@ -12,7 +12,7 @@ use SocialiteProviders\Manager\OAuth2\AbstractProvider;
 use SocialiteProviders\Manager\OAuth2\User;
 use Pepperfm\DonationalertsAuth\Contracts\DonationalertsAuthContract;
 
-class Provider extends AbstractProvider implements DonationalertsAuthContract
+class DonationalertsAuth extends AbstractProvider implements DonationalertsAuthContract
 {
     use ConfigTrait;
 

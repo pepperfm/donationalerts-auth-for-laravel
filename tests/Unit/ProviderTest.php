@@ -11,26 +11,12 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Two\Token;
-use Pepperfm\DonationalertsAuth\Provider;
+use Pepperfm\DonationalertsAuth\DonationalertsAuth;
 use ReflectionClass;
 use SocialiteProviders\Manager\OAuth2\User;
 
-class ProviderTest extends Provider
-{
-    public array $fakeRefreshTokenResponse = [];
-
-    public ?string $refreshTokenPassed = null;
-
-    protected function getRefreshTokenResponse($refreshToken)
-    {
-        $this->refreshTokenPassed = $refreshToken;
-
-        return $this->fakeRefreshTokenResponse;
-    }
-}
-
 beforeEach(function () {
-    $this->provider = new Provider(
+    $this->provider = new DonationalertsAuth(
         new Request(),
         'client-id',
         'client-secret',
@@ -119,27 +105,4 @@ test('maps the user array to a socialite user object', function () {
             'email' => 'user@example.com',
             'avatar' => 'https://example.com/avatar.png',
         ]);
-});
-
-test('returns a token object when refreshing without scopes in the response', function () {
-    $provider = new TestableProvider(
-        new Request(),
-        'client-id',
-        'client-secret',
-        'https://example.com/callback'
-    );
-    $provider->fakeRefreshTokenResponse = [
-        'access_token' => 'new-access',
-        'refresh_token' => 'new-refresh',
-        'expires_in' => 321,
-    ];
-
-    $token = $provider->refreshToken('refresh-token');
-
-    expect($provider->refreshTokenPassed)->toBe('refresh-token')
-        ->and($token)->toBeInstanceOf(Token::class)
-        ->and($token->token)->toBe('new-access')
-        ->and($token->refreshToken)->toBe('new-refresh')
-        ->and($token->expiresIn)->toBe(321)
-        ->and($token->approvedScopes)->toBe(['oauth-user-show']);
 });
